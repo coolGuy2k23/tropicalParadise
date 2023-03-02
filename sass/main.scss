@@ -34,7 +34,7 @@ body {
 
 	&:focus {
 		outline: none;
-		border: 1px solid rgba($color: #ffffff, $alpha: 0.5);
+		border: 1px solid rgba(255, 255, 255, 0.5);
 		border-radius: 8px;
 	}
 
@@ -55,7 +55,6 @@ body {
 	&__bars::after,
 	&__bars::before {
 		@include burgerBtn;
-		background-color: red;
 	}
 
 	&__bars {
@@ -73,6 +72,50 @@ body {
 	}
 }
 
+.nav {
+	position: fixed;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100%;
+	transform: translateX(100%);
+	transition: 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+	background-image: $blue-gradient-solid;
+	z-index: 100;
+
+	&--active {
+		transform: translateX(0);
+	}
+
+	&__item {
+		position: relative;
+		display: block;
+		margin: 0.5em 0;
+		padding: 0.5em 2em;
+		font-size: 2.8rem;
+		color: $pure-white;
+		text-decoration: none;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 3px;
+			height: 100%;
+			background-color: $pure-white;
+			transform: scaleY(0);
+			transition: transform 0.3s;
+		}
+
+		&:hover::before {
+			transform: scaleY(1);
+		}
+	}
+}
+
 //header
 .header {
 	position: relative;
@@ -84,4 +127,71 @@ body {
 	padding: 2em;
 	height: 75vh;
 	text-align: center;
+	color: $pure-white;
+	@include heroImages('../img/palm-3172367_640.jpg');
+	background-attachment: scroll;
+
+	&__heading {
+		font-family: 'Dancing Script', cursive;
+		font-size: 4.8rem;
+		font-weight: 300;
+	}
+
+	&__text {
+		font-size: 1.4rem;
+	}
+
+	&__btn {
+		margin-top: 2em;
+		padding: 0.8em 1.6em;
+		font-size: 1rem;
+		background: $pure-white;
+		border: none;
+		border-radius: 8px;
+		color: $dark;
+		text-decoration: none;
+		text-transform: uppercase;
+		cursor: pointer;
+
+		&::before {
+			background-color: $light-white;
+		}
+	}
+}
+
+//------------------------------------------------
+// MEDIA MEDIA MEDIA MEDIA MEDIA MEDAI MEDIA MEDIA
+//------------------------------------------------
+
+@media (min-width: 768px) {
+	.white-block {
+		height: 50px;
+		width: 45%;
+	}
+	.header {
+		&__heading {
+			font-size: 6.6rem;
+		}
+
+		&__text {
+			font-size: 2.2rem;
+		}
+		&__btn {
+			font-size: 1.6rem;
+		}
+	}
+}
+
+@media (min-width: 992px) {
+	.burger-btn {
+		top: 50px;
+		right: 50px;
+	}
+
+	.header {
+		background-image: $blue-gradient, url('/img/palm-3172367_1920.jpg');
+		&__heading {
+			font-size: 10rem;
+		}
+	}
 }
